@@ -1,1 +1,1 @@
-# CCI_CodingPractice
+Code for CCI exercises.
