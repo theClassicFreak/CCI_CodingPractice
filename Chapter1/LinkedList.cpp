@@ -1,30 +1,36 @@
-#include <iostream>
-using namespace std;
+#include "iostream"
 
 struct node
 {
     int value;
     node *next;
+    node()
+    {
+        value=0;
+        next=nullptr;
+    }
 };
+
 
 class LinkedList
 {
     private:
-        node *head, *tail;
+        node* head = new node();
+        node* tail = new node();
     public:
         LinkedList()
         {
-            head=NULL;
-            tail=NULL;
+            head=nullptr;
+            tail=nullptr;
         }
 
         void addNodeToEnd(int newValue)
         {
-            node* newNode = new node;
+            node* newNode = new node();
             newNode->value = newValue;
-            newNode->next = NULL;
+            newNode->next = nullptr;
 
-            if(head == NULL)
+            if(head == nullptr)
             {
                 head = newNode;
                 tail = newNode;
@@ -36,67 +42,88 @@ class LinkedList
             }
         }
 
-        int removeNodeFromEnd()
+        int removeLastNode()
         {
             int returnValue = tail->value;
             node* tmpNode = head;
-            while(tmpNode->next->next != NULL)
+            while(tmpNode->next->next != nullptr)
             {
                 tmpNode = tmpNode->next;
             }
             tail = tmpNode;
-            free(tail->next);
-            tail->next = NULL;
-            cout<<"\n"<<returnValue;
+            tail->next = nullptr;
+            delete(tmpNode);
             return returnValue;
         }
 
         void showList()
         {
-            node* tmpNode = head;
-            cout<<"\n";
-            while(tmpNode != NULL)
+            if(head==nullptr)
             {
-                cout << tmpNode->value << " -> ";
-                tmpNode = tmpNode->next;
+                std::cout<<std::endl;
+                return;
             }
-        }
-
-        int findNode(int searchValue)
-        {
-            node* tmpNode = head;
-            int index = 0;
-            while(tmpNode != NULL)
+            else
             {
-                if(tmpNode->value == searchValue)
+                node* tmpNode = head;
+                while(tmpNode != nullptr)
                 {
-                    cout<<"\nFound at Index : "<<index;
-                    return index;
+                    std::cout << tmpNode->value << " -> ";
+                    tmpNode = tmpNode->next;
                 }
-                tmpNode = tmpNode->next;
-                index++;
+                std::cout<<std::endl;
             }
-            cout<<"\nNot Found";
-            return -1;
         }
 
-};
+        bool findNode(int searchValue)
+        {
+            if(head==nullptr)
+            {
+                return false;
+            }
+            else
+            {
+                node* tmpNode = head;
+                while(tmpNode != nullptr)
+                {
+                    if(tmpNode->value == searchValue)
+                    {
+                        return true;
+                    }
+                    tmpNode = tmpNode->next;
+                }
+                return false;
+            }
+        }
 
-int main()
-{
-    // LinkedList obj;
-    // obj.addNodeToEnd(12);
-    // obj.addNodeToEnd(244);
-    // obj.addNodeToEnd(212);
-    // obj.addNodeToEnd(-991);
-    // obj.addNodeToEnd(11);
-    // obj.showList();
-    // obj.removeNodeFromEnd();
-    // obj.removeNodeFromEnd();
-    // obj.addNodeToEnd(-99);
-    // obj.showList();
-    // obj.findNode(-99);
-    // obj.findNode(244);
-    // obj.showList();
-    return 0;
-}
+        void removeNode(int searchValue)
+        {
+            if(head==nullptr)
+            {
+                return;
+            }
+            else
+            {
+                node* tmpNode = head;
+                node* tmpLastNode = head;
+                while(tmpNode != nullptr)
+                {
+                    if(tmpNode->value == searchValue)
+                    {
+                        if(tmpNode==head)
+                        {
+                            head=tmpNode->next;
+                        }
+                        else
+                        {
+                            tmpLastNode->next=tmpNode->next;
+                        }
+                        delete(tmpNode);
+                        break;
+                    }
+                    tmpLastNode = tmpNode;
+                    tmpNode = tmpNode->next;
+                }
+            }
+        }   
+};
