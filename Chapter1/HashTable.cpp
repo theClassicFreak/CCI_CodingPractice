@@ -7,6 +7,7 @@ std::vector<LinkedList> hashTable;
 class HashTable
 {
     private:
+        
     public:
         HashTable()
         {
@@ -14,10 +15,13 @@ class HashTable
             for (int i = 0; i < 10 ; i++) 
             {
                 LinkedList* bucket = new LinkedList();
-                // bucket.addNodeToEnd(1234+i);
-                // bucket.addNodeToEnd(4321+i);
                 hashTable.push_back(*bucket);
+                delete bucket;
             }
+        }
+        ~HashTable()
+        {
+            hashTable.clear();
         }
         // Hash function to return an array index (key) based on value
         int hashFunction(int value);
@@ -34,7 +38,7 @@ class HashTable
 
 int HashTable::hashFunction(int value)
 {
-    int key = value % 10;
+    int key = abs(value % 10);
     return key;
 }
 
@@ -69,4 +73,28 @@ bool HashTable::findValue(int value)
     auto bucket = hashTable.begin() + key;
     bool searchResult = bucket->findNode(value);
     return searchResult;
+}
+
+int main()
+{
+    // HashTable* obj = new HashTable();
+    // obj->addToHashTable(12);
+    // obj->addToHashTable(88);
+    // obj->addToHashTable(32);
+    // obj->addToHashTable(688);
+    // obj->addToHashTable(35);
+    // obj->addToHashTable(14);
+    // obj->removeFromHashTable(12);
+    // obj->removeFromHashTable(34);
+    // obj->removeFromHashTable(14);
+    // obj->addToHashTable(14);
+    // obj->addToHashTable(176);
+    // obj->addToHashTable(112);
+    // obj->findValue(176);
+    // obj->findValue(-12);
+    // obj->findValue(14);
+    // obj->findValue(688);
+    // obj->showHashTable();
+    // delete obj;
+    return 0;
 }

@@ -11,17 +11,27 @@ struct node
     }
 };
 
-
 class LinkedList
 {
     private:
-        node* head = new node();
-        node* tail = new node();
+        node* head = nullptr;
+        node* tail = nullptr;
     public:
-        LinkedList()
+        ~LinkedList()
         {
-            head=nullptr;
-            tail=nullptr;
+            node* tmpNode = head;
+            node* tmpLastNode = head;
+            while ( tmpLastNode != nullptr)
+            {
+                tmpNode = tmpLastNode->next;
+                delete tmpLastNode;
+                tmpLastNode = tmpNode;
+            }
+            if( head != nullptr)
+            {
+                head=nullptr;
+                tail=nullptr;
+            }
         }
 
         void addNodeToEnd(int newValue)
@@ -92,6 +102,7 @@ class LinkedList
                     }
                     tmpNode = tmpNode->next;
                 }
+                delete tmpNode;
                 return false;
             }
         }
