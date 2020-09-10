@@ -74,27 +74,3 @@ bool HashTable::findValue(int value)
     bool searchResult = bucket->findNode(value);
     return searchResult;
 }
-
-int main()
-{
-    // HashTable* obj = new HashTable();
-    // obj->addToHashTable(12);
-    // obj->addToHashTable(88);
-    // obj->addToHashTable(32);
-    // obj->addToHashTable(688);
-    // obj->addToHashTable(35);
-    // obj->addToHashTable(14);
-    // obj->removeFromHashTable(12);
-    // obj->removeFromHashTable(34);
-    // obj->removeFromHashTable(14);
-    // obj->addToHashTable(14);
-    // obj->addToHashTable(176);
-    // obj->addToHashTable(112);
-    // obj->findValue(176);
-    // obj->findValue(-12);
-    // obj->findValue(14);
-    // obj->findValue(688);
-    // obj->showHashTable();
-    // delete obj;
-    return 0;
-}

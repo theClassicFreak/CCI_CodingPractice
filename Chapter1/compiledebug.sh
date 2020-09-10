@@ -1,6 +1,7 @@
 clear
 echo -e "\n\n\n\n\n"
-echo -e "\t================================================================================"
+echo -e "\t\t================================================================================"
 echo -e "\n\n\n\n\n"
-g++ -o HashTable -ggdb3 -Wall HashTable.cpp
-valgrind --leak-check=full --show-leak-kinds=all ./HashTable
+g++ -o Tester -ggdb3 -Wall TestHashTable.cpp
+# valgrind --leak-check=full --show-leak-kinds=all ./Tester
+./Tester
