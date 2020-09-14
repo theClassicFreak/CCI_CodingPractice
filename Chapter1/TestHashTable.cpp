@@ -60,8 +60,7 @@ int main()
         }
         newFile.close();
     }  
-    std::cout<<"Search Hits: "<<searchHits<<", Search Misses: "<<searchMiss<<std::endl;
-    
+    std::cout<<"Search Hits: "<<searchHits<<", Search Misses: "<<searchMiss<<std::endl; 
     delete obj;
     return 0;
 }
